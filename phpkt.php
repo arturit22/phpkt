@@ -8,21 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
     <style>
-        .banner1 {
+        .banner1, .banner2 {
             height: 300px;
-            width: 600px;
+            width: 100%;
             object-fit: cover;
             background-position: center;
             border-radius: 0;
             margin-top: 15px;
         }
-        .banner2 {
-            height: 300px;
-            width: 600px;
-            object-fit: cover;
-            background-position: center;
-            border-radius: 0;
-            margin-top: 15px;
+        .bg-lightgrey {
+            background-color: #d3d3d3 !important; 
+            padding: 20px 0; 
         }
     </style>
 
@@ -46,16 +42,16 @@
             <div class="collapse navbar-collapse" id="minuMenyy">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php"><b>Avaleht</b></a>
+                        <a class="nav-link" href="PHPKT.php"><b>Avaleht</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="BSKTpood.php"><b>Pood</b></a>
+                        <a class="nav-link" href="pood.php"><b>Pood</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="BSKTkontakt.php"><b>Kontakt</b></a>
+                        <a class="nav-link" href="kontakt.php"><b>Kontakt</b></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="BSKTadmin.php"><b>Admin</b></a>
+                        <a class="nav-link" href="admin.php"><b>Admin</b></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-bag-shopping"></i></a>
@@ -98,8 +94,6 @@
                 </div>
             </div>
 
-            
-
             <div class="col-md-6">
                 <div class="card border-1 banner2" style="background-image: url('<?php echo $randpilt2; ?>');">
 
@@ -115,29 +109,28 @@
         </div>
     </div>
 
-    
     <br>
     <h1 class="text-center"><b>Parimad pakkumised</b></h1>
 
     <div class="container mt-5">
         <div class="row">
+
+
         <?php
-$fail = "tooted.csv";
-
-if (($handle = fopen($fail, 'r')) !== FALSE) {
-    while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-
-        $pilt = 'img/' . $data[0];
-        $nimetus = $data[1];
+$csv = "asjad.csv";
+if (($handle = fopen($csv, "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        $pilt2 = $data[0];
+        $nimi = $data[1];
         $hind = $data[2];
-
+        $pilt2 = str_replace("https://localhost/", "", trim($pilt2));
         echo '
         <div class="col-md-3 mb-4">
             <div class="card border-1 p-2">
-                <img src="' . $pilt . '" class="card-img-top rounded-3" alt="' . $nimetus . '">
+                <img src="' . htmlspecialchars($pilt2) . '" class="card-img-top rounded-3" alt="' . htmlspecialchars($nimi) . '">
                 <div class="card-body">
-                    <h5 class="card-title mb-0"><b>' . $nimetus . '</b></h5>
-                    <p class="card-text text-success"><b>' . $hind . '€</b></p>
+                    <h5 class="card-title mb-0"><b>' . htmlspecialchars($nimi) . '</b></h5>
+                    <p class="card-text"><b>' . htmlspecialchars($hind) . '€</b></p>
                 </div>
             </div>
         </div>';
@@ -147,21 +140,16 @@ if (($handle = fopen($fail, 'r')) !== FALSE) {
 ?>
 
 
-        </div>
-    </div>
-    
-    
-
-    
-
-    <div class="bg-lightgrey text-dark bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+        <div class="bg-lightgrey container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
                     <br>
                     <br>
                     <br>
-                    <p>Kuusemäe</p>
+                    <br>
+                    <p>artur</p>
+                    <br>
                     <br>
                     <br>
                     <br>
@@ -169,28 +157,7 @@ if (($handle = fopen($fail, 'r')) !== FALSE) {
             </div>
         </div>
     </div>
-    
-    
 
-
-        <script>
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    var forms = document.getElementsByClassName('needs-validation');
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                    });
-                }, false);
-            })();
-        </script>
-        
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"    crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     </body>
