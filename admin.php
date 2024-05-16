@@ -9,6 +9,18 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <style>
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="password"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 
@@ -43,9 +55,65 @@
         </div>
     </nav>
 
+<?php
+$username = $password = '';
+$usernameErr = $passwordErr = '';
+$loginErr = '';
 
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check username
+    if (empty($_POST["username"])) {
+        $usernameErr = "Kasutajanimi on vaja";
+    } else {
+        $username = test_input($_POST["username"]);
+    }
+    
+    // Check password
+    if (empty($_POST["password"])) {
+        $passwordErr = "Parooli on vaja";
+    } else {
+        $password = test_input($_POST["password"]);
+    }
+    
+    if (empty($usernameErr) && empty($passwordErr)) {
+        $users = array("user1" => "password1",);
+        
+        if (array_key_exists($username, $users) && $users[$username] == $password) {
+            header("Location: logitud.php");
+            exit();
+        } else {
+            $loginErr = "Vale kasutajanimi või parool";
+        }
+    }
+}
 
-    <h1>Admin</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore autem asperiores distinctio perferendis, laboriosam id numquam rem, corporis nisi adipisci recusandae nostrum cupiditate mollitia repudiandae consequatur nihil odit et vitae.</p>
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class="text-center">Admin</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <label for="username">Kasutajanimi:</label>
+    <input type="text" name="username" id="username">
+    <span class="error"><?php echo $usernameErr;?></span>
+    <br><br>
+    <label for="password">Parool:</label>
+    <input type="password" name="password" id="password">
+    <span class="error"><?php echo $passwordErr;?></span>
+    <br><br>
+    <input type="submit" value="Login">
+    <span class="error"><?php echo $loginErr;?></span>
+</form>
+
 </body>
 </html>
