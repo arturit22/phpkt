@@ -63,17 +63,17 @@
 
     <?php
      $pilt = ["b17.jpg", "b10.jpg", "b4.jpg", "b7.jpg", "b18.jpg"];
-     $text = ["<p class=\"card-text text-light mb-0\"><b>parim pakkumine</b></p>
-     <h2 class=\"card-text text-light mb-0\">osta 1 saad 1</h2>
-     <p class=\"card-text text-light mb-0\">The best classic dress is on sale at cora</p>", "<p class=\"card-text text-light mb-0\"><b>kevad/suvi</b></p>
-     <h2 class=\"card-text text-light mb-0\">kõik rohelised</h2>
-     <p class=\"card-text text-light mb-0\">20% soodsamalt</p>", "<p class=\"card-text text-light mb-0\"><b>sügis/talv</b></p>
-     <h2 class=\"card-text text-light mb-0\">ägedad jalatsid</h2>
-     <p class=\"card-text text-light mb-0\">40% soodsamalt</p>", "<p class=\"card-text text-light mb-0\"><b>aksessuaarid</b></p>
-     <h2 class=\"card-text text-light mb-0\">ägedad mütsid</h2>
-     <p class=\"card-text text-light mb-0\">väga soojad</p>", "<p class=\"card-text text-light mb-0\"><b>osta 2 saad 1</b></p>
-     <h2 class=\"card-text text-light mb-0\">sokid</h2>
-     <p class=\"card-text text-light mb-0\">mustad ja valged</p>"];
+     $text = ["<p class='card-text text-light mb-0'><b>parim pakkumine</b></p>
+     <h2 class='card-text text-light mb-0'>osta 1 saad 1</h2>
+     <p class='card-text text-light mb-0'>The best classic dress is on sale at cora</p>", "<p class='card-text text-light mb-0'><b>kevad/suvi</b></p>
+     <h2 class='card-text text-light mb-0'>kõik rohelised</h2>
+     <p class='card-text text-light mb-0'>20% soodsamalt</p>", "<p class='card-text text-light mb-0'><b>sügis/talv</b></p>
+     <h2 class='card-text text-light mb-0'>ägedad jalatsid</h2>
+     <p class='card-text text-light mb-0'>40% soodsamalt</p>", "<p class='card-text text-light mb-0'><b>aksessuaarid</b></p>
+     <h2 class='card-text text-light mb-0'>ägedad mütsid</h2>
+     <p class='card-text text-light mb-0'>väga soojad</p>", "<p class='card-text text-light mb-0'><b>osta 2 saad 1</b></p>
+     <h2 class='card-text text-light mb-0'>sokid</h2>
+     <p class='card-text text-light mb-0'>mustad ja valged</p>"];
      $randpilt = $pilt[array_rand($pilt)];
      $randpilt2 = $pilt[array_rand($pilt)];
      $randtext = $text[array_rand($text)];
